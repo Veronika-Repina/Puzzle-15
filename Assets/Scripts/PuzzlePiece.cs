@@ -16,10 +16,14 @@ public class PuzzlePiece : MonoBehaviour
             if (puzzlePieceSprites != null)
             {
                 puzzleImage.sprite = puzzlePieceSprites;
+                puzzleImage.color = Color.white;
             }
         }
-
-        else puzzleImage.sprite = null;
+        else
+        {
+            puzzleImage.sprite = null;
+            puzzleImage.color = new Color32(192, 181, 159, 200);
+        }
     }
 
     private void SetNewNumber(int number)
@@ -31,7 +35,6 @@ public class PuzzlePiece : MonoBehaviour
     {
         SetNewNumber(0);
         SetNewPieceImage(null);
-        
     }
 
     public void SetNewPiece(PuzzlePiece puzzlePiece)

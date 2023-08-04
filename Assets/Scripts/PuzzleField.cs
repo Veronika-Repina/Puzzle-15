@@ -8,6 +8,8 @@ public class PuzzleField: MonoBehaviour
 
     public Sprite[] numberSprites;
 
+    public GameManager gameManager;
+
     private void Start()
     {
         SetRandomPuzzle();
@@ -21,6 +23,7 @@ public class PuzzleField: MonoBehaviour
 
             if (EmptyIsFound(emptyPlaceID))
             {
+                gameManager.IncreaseCounter();
                 puzzlePieces[emptyPlaceID].SetNewPiece(puzzlePiece);
                 puzzlePiece.SetEmpty();
 
