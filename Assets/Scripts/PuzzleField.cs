@@ -10,6 +10,8 @@ public class PuzzleField: MonoBehaviour
 
     public GameManager gameManager;
 
+    public Timer timer;
+
     private void Start()
     {
         SetRandomPuzzle();
@@ -29,7 +31,7 @@ public class PuzzleField: MonoBehaviour
 
                 if (IfWin())
                 {
-                    Debug.Log("Congrats!");
+                    Debug.Log("Congrats! Your result is " + timer.GetTimeText() + "!");
                 }
             }
 
@@ -177,6 +179,8 @@ public class PuzzleField: MonoBehaviour
                 return false;
             }
         }
+
+        timer.StopTimer();
         return true;
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Text counterText;
-    public int moveCounter;
+    [SerializeField]
+    private Text counterText;
 
     public void IncreaseCounter()
     {
