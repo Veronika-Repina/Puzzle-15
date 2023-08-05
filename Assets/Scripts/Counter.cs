@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class Counter : MonoBehaviour
 {
     [SerializeField]
     private Text counterText;
@@ -14,5 +14,4 @@ public class GameManager : MonoBehaviour
         int counter = int.Parse(counterText.text) + 1;
         counterText.text = counter.ToString();
     }
-
 }

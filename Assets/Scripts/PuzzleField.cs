@@ -8,7 +8,7 @@ public class PuzzleField: MonoBehaviour
 
     public Sprite[] numberSprites;
 
-    public GameManager gameManager;
+    public Counter gameManager;
 
     public Timer timer;
 
