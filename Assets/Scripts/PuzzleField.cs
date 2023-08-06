@@ -8,7 +8,7 @@ public class PuzzleField: MonoBehaviour
 
     public Sprite[] numberSprites;
 
-    public Counter gameManager;
+    public Counter counter;
 
     public Timer timer;
 
@@ -25,17 +25,15 @@ public class PuzzleField: MonoBehaviour
 
             if (EmptyIsFound(emptyPlaceID))
             {
-                gameManager.IncreaseCounter();
+                counter.IncreaseCounter();
                 puzzlePieces[emptyPlaceID].SetNewPiece(puzzlePiece);
                 puzzlePiece.SetEmpty();
 
                 if (IfWin())
                 {
-                    Debug.Log("Congrats! Your result is " + timer.GetTimeText() + "!");
+                    WinAction();
                 }
             }
-
-            
         }
     }
 
@@ -182,5 +180,12 @@ public class PuzzleField: MonoBehaviour
 
         timer.StopTimer();
         return true;
+    }
+
+    private void WinAction()
+    {
+        PlayerPrefs.SetString("moveCounterResult", counter.GetCount());
+        PlayerPrefs.SetString("timerResult", timer.GetTimeText());
+        //must check for smaller result
     }
 }

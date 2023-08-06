@@ -12,6 +12,13 @@ public class Timer : MonoBehaviour
     private float timer = 0;
     private bool runTimer = true;
 
+    public Text timerBestScoreText;
+
+    private void Start()
+    {
+        timerBestScoreText.text = PlayerPrefs.GetString("timerResult");
+    }
+
     private void Update()
     {
         if (runTimer)

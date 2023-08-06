@@ -9,6 +9,8 @@ public class PuzzlePiece : MonoBehaviour
     public int pieceNumber;
     public Image puzzleImage;
 
+    public Text settingText;
+
     public void SetNewPieceImage(Sprite puzzlePieceSprites)
     {
         if (pieceNumber != 0)
