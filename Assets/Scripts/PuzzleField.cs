@@ -12,6 +12,8 @@ public class PuzzleField: MonoBehaviour
 
     public Timer timer;
 
+    public GameObject winPanel;
+
     private void Start()
     {
         SetRandomPuzzle();
@@ -182,10 +184,29 @@ public class PuzzleField: MonoBehaviour
         return true;
     }
 
+    public void ResetPuzzle()
+    {
+        timer.StopTimer();
+        timer.ResetTimer();
+        counter.ResetCounter();
+
+        SetRandomPuzzle();
+    }
+
     private void WinAction()
     {
-        PlayerPrefs.SetString("moveCounterResult", counter.GetCount());
-        PlayerPrefs.SetString("timerResult", timer.GetTimeText());
-        //must check for smaller result
+        if ((PlayerPrefs.GetInt("moveCounterResult") > counter.GetCount()) || PlayerPrefs.GetInt("moveCounterResult") == 0)
+        {
+            PlayerPrefs.SetInt("moveCounterResult", counter.GetCount());
+            counter.SetNewBestResult();
+        }
+
+        if ((PlayerPrefs.GetInt("timerResult") > timer.GetTimeInt()) || PlayerPrefs.GetInt("timerResult") == 0)
+        {
+            PlayerPrefs.SetInt("timerResult", timer.GetTimeInt());
+            timer.SetNewBestResult();
+        }
+
+        winPanel.SetActive(true);
     }
 }

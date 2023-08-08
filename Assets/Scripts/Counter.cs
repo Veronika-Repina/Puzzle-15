@@ -11,10 +11,18 @@ public class Counter : MonoBehaviour
 
     public Text counterBestScoreText;
 
+    public SettingsMenu settingMenu;
+
     private void Start()
     {
-        Debug.Log(PlayerPrefs.GetString("moveCounterResult"));
-        counterBestScoreText.text = PlayerPrefs.GetString("moveCounterResult");
+        if (PlayerPrefs.GetInt("moveCounterResult") != 0)
+        {
+            counterBestScoreText.text = PlayerPrefs.GetInt("moveCounterResult").ToString();
+        }
+        else
+        {
+            counterBestScoreText.text = "No";
+        }
     }
 
     public void IncreaseCounter()
@@ -23,8 +31,18 @@ public class Counter : MonoBehaviour
         counterText.text = counter.ToString();
     }
 
-    public string GetCount()
+    public int GetCount()
     {
-        return counterText.text;
+        return int.Parse(counterText.text);//need result not to be written if setting is off
+    }
+
+    public void ResetCounter()
+    {
+        counterText.text = "0";
+    }
+
+    public void SetNewBestResult()
+    {
+        counterBestScoreText.text = PlayerPrefs.GetInt("moveCounterResult").ToString();
     }
 }

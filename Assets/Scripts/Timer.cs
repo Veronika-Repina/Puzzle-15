@@ -10,13 +10,20 @@ public class Timer : MonoBehaviour
     private Text timerText;
 
     private float timer = 0;
-    private bool runTimer = true;
+    private bool runTimer = false;
 
     public Text timerBestScoreText;
 
     private void Start()
     {
-        timerBestScoreText.text = PlayerPrefs.GetString("timerResult");
+        if (PlayerPrefs.GetInt("timerResult") != 0)
+        {
+            timerBestScoreText.text = GetTimeText(PlayerPrefs.GetInt("timerResult"));
+        }
+        else
+        {
+            timerBestScoreText.text = "No";
+        }
     }
 
     private void Update()
@@ -24,30 +31,50 @@ public class Timer : MonoBehaviour
         if (runTimer)
         {
             timer = timer + Time.deltaTime;
-            timerText.text = GetTimeText();
+            timerText.text = GetTimeText((int)timer);
         }
     }
 
-    public string GetTimeText()
+    public string GetTimeText(int timer)
     {
-        int timerTemp = (int)timer;
-        if (timerTemp < 60)
+        if (timer < 60)
         {
-            return timerTemp.ToString();
+            return timer.ToString();
         }
         else
         {
-            if (timerTemp % 60 < 10)
-                return timerTemp / 60 + ":0" + timerTemp % 60;
+            if (timer % 60 < 10)
+                return timer / 60 + ":0" + timer % 60;
             else
             {
-                return timerTemp / 60 + ":" + timerTemp % 60;
+                return timer / 60 + ":" + timer % 60;
             }
         }
+    }
+
+    public int GetTimeInt()
+    {
+        return (int)timer;
     }
 
     public void StopTimer()
     {
         runTimer = false;
+    }
+
+    public void StartTimer()
+    {
+        runTimer = true;
+    }
+
+    public void ResetTimer()
+    {
+        timer = 0;
+        timerText.text = "0";
+    }
+
+    public void SetNewBestResult()
+    {
+        timerBestScoreText.text = GetTimeText(PlayerPrefs.GetInt("timerResult"));
     }
 }

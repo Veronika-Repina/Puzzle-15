@@ -12,9 +12,25 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
+        GetSettingSaves("IsSound", ref isSound);
+        GetSettingSaves("IsTimer", ref isTimer);
+        GetSettingSaves("IsCounter", ref isCounter);
+
         SetSettings();
 
         ApplySettings();
+    }
+
+    private void GetSettingSaves(string prefsName, ref bool settingStatus)
+    {
+        if (PlayerPrefs.GetString(prefsName).Contains("false"))
+        {
+            settingStatus = false;
+        }
+        else
+        {
+            settingStatus = true;
+        }
     }
 
     private void SetSettings()
@@ -53,21 +69,27 @@ public class SettingsMenu : MonoBehaviour
         {
             case 0:
                 SetOn(soundSetPieces, ref isSound);
+                PlayerPrefs.SetString("IsSound", "true");
                 break;
             case 1:
                 SetOff(soundSetPieces, ref isSound);
+                PlayerPrefs.SetString("IsSound", "false");
                 break;
             case 2:
                 SetOn(timerSetPieces, ref isTimer);
+                PlayerPrefs.SetString("IsTimer", "true");
                 break;
             case 3:
                 SetOff(timerSetPieces, ref isTimer);
+                PlayerPrefs.SetString("IsTimer", "false");
                 break;
             case 4:
                 SetOn(counterSetPieces, ref isCounter);
+                PlayerPrefs.SetString("IsCounter", "true");
                 break;
             case 5:
                 SetOff(counterSetPieces, ref isCounter);
+                PlayerPrefs.SetString("IsCounter", "false");
                 break;
         }
         ApplySettings();
