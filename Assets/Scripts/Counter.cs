@@ -33,7 +33,12 @@ public class Counter : MonoBehaviour
 
     public int GetCount()
     {
-        return int.Parse(counterText.text);//need result not to be written if setting is off
+        if (settingMenu.isCounter)
+        {
+            return int.Parse(counterText.text);
+        }
+
+        return 0;
     }
 
     public void ResetCounter()

@@ -14,6 +14,8 @@ public class Timer : MonoBehaviour
 
     public Text timerBestScoreText;
 
+    public SettingsMenu settingMenu;
+
     private void Start()
     {
         if (PlayerPrefs.GetInt("timerResult") != 0)
@@ -54,7 +56,12 @@ public class Timer : MonoBehaviour
 
     public int GetTimeInt()
     {
-        return (int)timer;
+        if (settingMenu.isTimer)
+        {
+            return (int)timer;
+        }
+
+        return 0;
     }
 
     public void StopTimer()

@@ -6,7 +6,7 @@ public class SettingsMenu : MonoBehaviour
 {
     public PuzzlePiece[] soundSetPieces, timerSetPieces, counterSetPieces;
 
-    private bool isSound = true, isTimer = true, isCounter = true;
+    public bool isSound = true, isTimer = true, isCounter = true;
 
     public GameObject timerPanel, counterPanel;
 

@@ -14,6 +14,7 @@ public class PuzzleField: MonoBehaviour
 
     public GameObject winPanel;
 
+    public AudioManager audioManager;
     private void Start()
     {
         SetRandomPuzzle();
@@ -27,6 +28,7 @@ public class PuzzleField: MonoBehaviour
 
             if (EmptyIsFound(emptyPlaceID))
             {
+                audioManager.PlayClick();
                 counter.IncreaseCounter();
                 puzzlePieces[emptyPlaceID].SetNewPiece(puzzlePiece);
                 puzzlePiece.SetEmpty();
@@ -195,13 +197,13 @@ public class PuzzleField: MonoBehaviour
 
     private void WinAction()
     {
-        if ((PlayerPrefs.GetInt("moveCounterResult") > counter.GetCount()) || PlayerPrefs.GetInt("moveCounterResult") == 0)
+        if (((PlayerPrefs.GetInt("moveCounterResult") > counter.GetCount()) || PlayerPrefs.GetInt("moveCounterResult") == 0) && counter.GetCount() != 0)
         {
             PlayerPrefs.SetInt("moveCounterResult", counter.GetCount());
             counter.SetNewBestResult();
         }
 
-        if ((PlayerPrefs.GetInt("timerResult") > timer.GetTimeInt()) || PlayerPrefs.GetInt("timerResult") == 0)
+        if (((PlayerPrefs.GetInt("timerResult") > timer.GetTimeInt()) || PlayerPrefs.GetInt("timerResult") == 0) && timer.GetTimeInt() != 0)
         {
             PlayerPrefs.SetInt("timerResult", timer.GetTimeInt());
             timer.SetNewBestResult();
